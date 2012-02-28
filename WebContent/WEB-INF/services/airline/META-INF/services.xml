@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.6.1  Built on : Aug 31, 2011 (12:22:40 CEST) -->
+<serviceGroup>
+    <service name="airline">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="org.example.www.airline.AirlineMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">org.example.www.airline.AirlineSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="checkAvailability" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://www.example.org/airline/">
+            <actionMapping>http://www.example.org/airline/checkAvailability</actionMapping>
+            <outputActionMapping>http://www.example.org/airline/airline/checkAvailabilityResponse</outputActionMapping>
+        </operation>
+        <operation name="bookFlight" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://www.example.org/airline/">
+            <actionMapping>http://www.example.org/airline/bookFlight</actionMapping>
+            <outputActionMapping>http://www.example.org/airline/airline/bookFlightResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

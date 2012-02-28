@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="airline" targetNamespace="http://www.example.org/airline/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.org/airline/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/airline/">
+			<xsd:element name="FlightRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="date" type="xsd:string"/>
+						<xsd:element name="departure" type="xsd:string"/>
+						<xsd:element name="destination" type="xsd:string"/>
+						<xsd:element name="numberOfPersons" type="xsd:integer"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="FlightNumberList">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element maxOccurs="unbounded" name="flightNumber" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="BookingRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="flightNumber" type="xsd:string"/>
+						<xsd:element name="date" type="xsd:string"/>
+						<xsd:element name="numberOfPersons" type="xsd:integer"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="BookingResponse" type="xsd:string"/>
+		</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AvailabilityRequest">
+    <wsdl:part name="flightRequestMessage" element="tns:FlightRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BookingResponse">
+    <wsdl:part name="response" element="tns:BookingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AvailabilityResponse">
+    <wsdl:part name="flightNumbersMessage" element="tns:FlightNumberList">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BookingRequest">
+    <wsdl:part name="bookingRequestMessage" element="tns:BookingRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="airline">
+    <wsdl:operation name="checkAvailability">
+      <wsdl:input message="tns:AvailabilityRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:AvailabilityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bookFlight">
+      <wsdl:input message="tns:BookingRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:BookingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="airlineSOAP" type="tns:airline">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="checkAvailability">
+      <soap:operation soapAction="http://www.example.org/airline/checkAvailability"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bookFlight">
+      <soap:operation soapAction="http://www.example.org/airline/bookFlight"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="airline">
+    <wsdl:port name="airlineSOAP" binding="tns:airlineSOAP">
+      <soap:address location="http://localhost:8080/SOA_-_Assignment_1/services/airline"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
